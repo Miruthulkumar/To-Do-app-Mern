@@ -12,6 +12,7 @@ let todos = [
     id: 1,
     title: "Buy groceries",
     completed: false,
+    priority: "high"
   },
   {
     id: 2,
