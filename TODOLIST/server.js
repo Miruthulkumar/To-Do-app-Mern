@@ -1,6 +1,6 @@
-const express = require("express");
-const app = express();
-const PORT = 3000;
+const express = require("express"); //importing express
+const app = express(); //assigning express to constant called app
+const PORT = 3000; //assigning port, we use this in last app.listen to start the server
 app.use(express.json());
 
 let todos = [
@@ -57,15 +57,23 @@ let todos = [
 ];
 
 // To get all todo items
-app.get("/todos", (req, res) => {
+app.get("/todos", (req, res) => {         //optionally can omit parantheses aswell.
   res.json(todos);
 });
 
 // Get todo by Id
 app.get("/todo/:taskId", (req, res) => {
   const taskId = req.params.taskId;
-  const todo = todos.find((todo) => todo.id == taskId);
+  const todo = todos.find((todo) => todo.id == taskId);  //one line arrow function ,can use parantheses after arrow if needed!
   res.status(200).json(todo);
+
+  // for ( i = 0; i < todos.length; i++) {
+  //       const todo = todos[i];
+  //       if (todo.id == taskId) {
+  //           res.status(200).json(todo);
+  //       }
+  //   }
+
 });
 
 // Add todo
@@ -98,6 +106,7 @@ app.delete("/todo/delete", (req, res) => {
   res.status(200).send("Deleted successfully");
 });
 
+//starting the server
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);
 });
