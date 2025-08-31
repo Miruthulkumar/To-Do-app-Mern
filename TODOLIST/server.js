@@ -63,7 +63,7 @@ let todos = [
   },
 ];
 
-// To get all todo items
+// To get all todo items //db connected
 app.get("/todos", async (req, res) => {
   //optionally can omit parantheses aswell.
   const todos = await Todo.find();
@@ -84,10 +84,13 @@ app.get("/todo/:taskId", (req, res) => {
   //   }
 });
 
-// Add todo
-app.post("/todo", (req, res) => {
-  todos = [...todos, req.body];
-  res.status(200).send("Todo created successfully.");
+// Add todo //db connected
+app.post("/todo", async (req, res) => {
+  const newTodo = await Todo.create(req.body);
+  res.status(200).json({
+    message: "Todo Created Successfully",
+    data: newTodo,
+  });
 });
 
 //update todo
