@@ -57,14 +57,15 @@ let todos = [
 ];
 
 // To get all todo items
-app.get("/todos", (req, res) => {         //optionally can omit parantheses aswell.
+app.get("/todos", (req, res) => {
+  //optionally can omit parantheses aswell.
   res.json(todos);
 });
 
 // Get todo by Id
 app.get("/todo/:taskId", (req, res) => {
   const taskId = req.params.taskId;
-  const todo = todos.find((todo) => todo.id == taskId);  //one line arrow function ,can use parantheses after arrow if needed!
+  const todo = todos.find((todo) => todo.id == taskId); //one line arrow function ,can use parantheses after arrow if needed!
   res.status(200).json(todo);
 
   // for ( i = 0; i < todos.length; i++) {
@@ -73,7 +74,6 @@ app.get("/todo/:taskId", (req, res) => {
   //           res.status(200).json(todo);
   //       }
   //   }
-
 });
 
 // Add todo
