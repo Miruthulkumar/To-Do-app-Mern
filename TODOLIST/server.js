@@ -1,4 +1,8 @@
 const express = require("express"); //importing express
+
+const connectDb = require("./db"); //import connectDb method from db.js file.
+connectDb(); //connecting database
+
 const app = express(); //assigning express to constant called app
 const PORT = 3000; //assigning port, we use this in last app.listen to start the server
 app.use(express.json());
