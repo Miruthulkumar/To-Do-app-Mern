@@ -3,6 +3,8 @@ const express = require("express"); //importing express
 const connectDb = require("./db"); //import connectDb method from db.js file.
 connectDb(); //connecting database
 
+const Todo = require("./todoschema");
+
 const app = express(); //assigning express to constant called app
 const PORT = 3000; //assigning port, we use this in last app.listen to start the server
 app.use(express.json());
@@ -12,7 +14,7 @@ let todos = [
     id: 1,
     title: "Buy groceries",
     completed: false,
-    priority: "high"
+    priority: "high",
   },
   {
     id: 2,
@@ -62,8 +64,9 @@ let todos = [
 ];
 
 // To get all todo items
-app.get("/todos", (req, res) => {
+app.get("/todos", async (req, res) => {
   //optionally can omit parantheses aswell.
+  const todos = await Todo.find();
   res.json(todos);
 });
 
