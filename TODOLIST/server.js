@@ -3,6 +3,7 @@ const express = require("express"); //importing express
 const connectDb = require("./db"); //import connectDb method from db.js file.
 connectDb(); //connecting database
 
+//importing schema from todoschema.js file
 const Todo = require("./todoschema");
 
 const app = express(); //assigning express to constant called app
