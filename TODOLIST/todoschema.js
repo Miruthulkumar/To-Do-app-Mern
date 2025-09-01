@@ -11,4 +11,5 @@ const todoSchema = new mongoose.Schema({
   },
 });
 
+//exporting this schema to server.js file
 module.exports = mongoose.model("Todo", todoSchema);
