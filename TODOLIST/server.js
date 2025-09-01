@@ -71,18 +71,36 @@ app.get("/todos", async (req, res) => {
   res.json(todos);
 });
 
-// Get todo by Id
-app.get("/todo/:taskId", (req, res) => {
-  const taskId = req.params.taskId;
-  const todo = todos.find((todo) => todo.id == taskId); //one line arrow function ,can use parantheses after arrow if needed!
-  res.status(200).json(todo);
+// Get todo by Id //local dummy data only
+// app.get("/todo/:taskId", (req, res) => {
+//   const taskId = req.params.taskId;
+//   const todo = todos.find((todo) => todo.id == taskId); //one line arrow function ,can use parantheses after arrow if needed!
+//   res.status(200).json(todo);
+// });
 
-  // for ( i = 0; i < todos.length; i++) {
-  //       const todo = todos[i];
-  //       if (todo.id == taskId) {
-  //           res.status(200).json(todo);
-  //       }
-  //   }
+// Get todo by Id (from DB instead of local array)
+// Define a GET API endpoint at "/todo/:taskId"
+// ":taskId" means this part of the URL is dynamic, e.g. /todo/12345
+app.get("/todo/:taskId", async (req, res) => {
+  try {
+    // Extract "taskId" from the URL and use it to find a Todo in MongoDB by its ID
+    // Example: if URL is /todo/66d3f4..., req.params.taskId = "66d3f4..."
+    const todo = await Todo.findById(req.params.taskId);
+
+    // If no todo is found with that ID, return a 404 "Not Found" response
+    if (!todo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+
+    // If found, send the todo back to the client with status 200 (OK)
+    res.status(200).json(todo);
+  } catch (error) {
+    // If the ID format is invalid (e.g., not a proper MongoDB ObjectId),
+    // or any error occurs, return a 400 "Bad Request" with an error message
+    res
+      .status(400)
+      .json({ message: "Invalid ID format", error: error.message });
+  }
 });
 
 // Add todo //db connected
@@ -107,15 +125,22 @@ app.put("/todo/update", (req, res) => {
   res.status(200).send("Updated successfully");
 });
 
-//delete todo
-app.delete("/todo/delete", (req, res) => {
-  const { id } = req.body;
-  const exist = todos.some((todo) => todo.id == id);
-  if (!exist) {
-    res.status(404).send("task not found");
+//delete todo (db version)
+app.delete("/todo/delete/:id", async (req, res) => {
+  try {
+    const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
+
+    if (!deletedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+
+    res.status(200).json({
+      message: "Deleted successfully",
+      data: deletedTodo,
+    });
+  } catch (error) {
+    res.status(400).json({ message: "Delete failed", error: error.message });
   }
-  todos = todos.filter((t) => t.id != id);
-  res.status(200).send("Deleted successfully");
 });
 
 //starting the server

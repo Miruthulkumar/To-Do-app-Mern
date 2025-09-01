@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-//scheme creation . the format we use to defin this scheme is json.json is key value pair.
+//schema creation . the format we use to defin this schema is json.json is key value pair.
 const todoSchema = new mongoose.Schema({
   title: { type: String, required: true },
   isCompleted: { type: Boolean, default: false },
