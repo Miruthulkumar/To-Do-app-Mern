@@ -38,31 +38,6 @@ let todos = [
     title: "Clean the living room",
     completed: false,
   },
-  {
-    id: 6,
-    title: "Prepare for presentation",
-    completed: false,
-  },
-  {
-    id: 7,
-    title: "Read a chapter of a book",
-    completed: true,
-  },
-  {
-    id: 8,
-    title: "Go for evening walk",
-    completed: false,
-  },
-  {
-    id: 9,
-    title: "Fix broken chair",
-    completed: false,
-  },
-  {
-    id: 10,
-    title: "Call insurance agent",
-    completed: true,
-  },
 ];
 
 // To get all todo items from the database
