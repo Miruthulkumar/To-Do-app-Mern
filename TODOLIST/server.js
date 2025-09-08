@@ -11,7 +11,7 @@ const PORT = 3000; // Define the port number on which the server will listen for
 app.use(express.json()); // Middleware to parse incoming JSON payloads in request bodies
 
 // Define a local array of todo items as dummy data for initial testing or fallback
-let todos = [
+let todos = [ 
   {
     id: 1,
     title: "Buy groceries",
