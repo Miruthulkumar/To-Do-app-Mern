@@ -137,6 +137,10 @@ app.delete("/todo/delete/:id", async (req, res) => {
   }
 });
 
+app.get('/miruthul',(req,res)=>{
+  res.status(200).send("Miruthul work aagudhu da!")
+})
+
 // Start the Express server and listen on the specified PORT
 app.listen(PORT, () => {
   // Log a message to the console indicating the server is running and listening
