@@ -1,17 +1,16 @@
 const express = require("express"); // Importing the Express framework to create the server and handle routing
+const app = express(); // Initialize an Express application and assign it to the constant 'app'
+const PORT = 3000; // Define the port number on which the server will listen for incoming requests
 
 const connectDb = require("./db"); // Import the connectDb function from the db.js file to establish a database connection
 connectDb(); // Call the connectDb function to connect to the MongoDB database
-
 // Import the Todo schema/model from the todoschema.js file to interact with the todos collection in MongoDB
 const Todo = require("./todoschema");
 
-const app = express(); // Initialize an Express application and assign it to the constant 'app'
-const PORT = 3000; // Define the port number on which the server will listen for incoming requests
 app.use(express.json()); // Middleware to parse incoming JSON payloads in request bodies
 
 // Define a local array of todo items as dummy data for initial testing or fallback
-let todos = [ 
+let todos = [
   {
     id: 1,
     title: "Buy groceries",
@@ -53,7 +52,7 @@ app.get("/todos", async (req, res) => {
 // This shows how to fetch a todo by id from the local 'todos' array instead of the database
 // app.get("/todo/:taskId", (req, res) => {
 //   const taskId = req.params.taskId; // Extract 'taskId' parameter from the URL
-//   const todo = todos.find((todo) => todo.id == taskId); // Find the todo with matching id
+// const todo = todos.find((todo) => todo.id == taskId); // Find the todo with matching id
 //   res.status(200).json(todo); // Send back the found todo as JSON with HTTP status 200 OK
 // });
 
@@ -137,14 +136,12 @@ app.delete("/todo/delete/:id", async (req, res) => {
   }
 });
 
-app.get('/miruthul',(req,res)=>{
-  res.status(200).send("Miruthul work aagudhu da!")
-})
+app.get("/miruthul", (req, res) => {
+  res.status(200).send("Miruthul work aagudhu da!");
+});
 
 // Start the Express server and listen on the specified PORT
 app.listen(PORT, () => {
   // Log a message to the console indicating the server is running and listening
   console.log(`Server running at port ${PORT}`);
 });
-
-
