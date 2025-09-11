@@ -93,7 +93,6 @@ app.post("/todo", async (req, res) => {
   });
 });
 
-
 // Update an existing todo item in the local array
 // Define a PUT API endpoint at "/todo/update" to update a todo
 app.put("/todo/update", (req, res) => {
