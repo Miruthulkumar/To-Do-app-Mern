@@ -1,4 +1,4 @@
-import { useState } from "react"; // ✅ import useState from React
+import { useState } from "react"; 
 
 function ClickCounterButton() {
   const [inccount, incsetCount] = useState(0);

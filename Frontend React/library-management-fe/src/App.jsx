@@ -9,16 +9,15 @@ import Misc from "./components/Misc";
 function App() {
   return (
     <>
-      
-        <NameInLine />
+      <NameInLine />
 
-        <FruitsList />
+      <FruitsList />
 
-        <StudentTable />
+      <StudentTable />
 
-        <ClickCounterButton />
+      <ClickCounterButton />
 
-      {/* <Misc/> */}
+      <Misc/>
     </>
   );
 }

@@ -1,13 +1,13 @@
 function Misc() {
-  const studentDetails = [
+  const studentDetails = 
     {
       name: "Miruthul kumar M",
       dept: "ECE",
       Regno: "133",
-    },
-  ];
+    }
+  ;
 
-const deptfullname = `${studentDetails[0].dept} [Electronics and Coummunication Engineering]`;
+const deptfullname = `${studentDetails.dept} [Electronics and Coummunication Engineering]`;
 
   return (
     //external css
@@ -21,9 +21,9 @@ const deptfullname = `${studentDetails[0].dept} [Electronics and Coummunication 
         </h1>
       </a>
       
-      <h1>Name:{studentDetails[0].name}</h1>
-      <h1>Department:{studentDetails[0].dept}</h1>
-      <h1>Reg No:{studentDetails[0].Regno}</h1>
+      <h1>Name:{studentDetails.name}</h1>
+      <h1>Department:{studentDetails.dept}</h1>
+      <h1>Reg No:{studentDetails.Regno}</h1>
       <h1>Department Full Name : {deptfullname}</h1>
     </div>
   );
